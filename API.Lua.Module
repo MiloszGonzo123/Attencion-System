@@ -1,0 +1,39 @@
+local module = {}
+
+-- Tokenizer prosty + frazy 
+local function tokenize(prompt)
+	local phrases = {"w centrum", "mała wioska"}
+	for i, phrase in ipairs(phrases) do
+		local placeholder = "__PHRASE" .. i .. "__"
+		prompt = string.gsub(prompt, phrase, placeholder)
+	end
+	local tokens = {}
+	for word in string.gmatch(prompt, "%S+") do
+		for i, phrase in ipairs(phrases) do
+			local placeholder = "__PHRASE" .. i .. "__"
+			if word == placeholder then
+				word = phrase
+			end
+  		end
+		table.insert(tokens, word)
+	end
+	return tokens
+end
+
+local attencionSytemOR = require(script.AttencionSystem)
+
+-- Główna funkcja
+function module.attentionSystem(prompt)
+	local tokens = tokenize(prompt)
+	local result = {}
+	for i, token in ipairs(tokens) do
+		table.insert(result, {
+			token = token,
+			position = i,
+			attention = attencionSytemOR.Predict(tostring(token))
+		})
+	end
+	return result
+end
+
+return module
