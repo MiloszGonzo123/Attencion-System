@@ -7,7 +7,7 @@ Stworzyłem System Atencji, stworzony w roblox studio.
 
 System składa sie z dwóch komponentów: 1. API 2. NeuralNetwork
 
-*API:*
+##### *API:*
  ma kilka zadań, a dokładniej to normalizacje danych:
 
  słowo: "pies" lub zdanie "pies kalkulator kosz"
@@ -18,7 +18,8 @@ System składa sie z dwóch komponentów: 1. API 2. NeuralNetwork
  każdy z tokenów ma przypisaną mu kolejność w zdaniu
 
 
-*Neural:*
+
+##### *Neural:*
  serce Attencion,
 
  składa sie z 12 wejść(Input Layer)
